@@ -2,26 +2,26 @@
 
 int maxTree[MAX];
 
-int updateMax(int L,int R,int l,int p,int val) {
-    if(L==R) return maxTree[p]=val;
+int updateMax(int L,int R,int l,int node,int val) {
+    if(L==R) return maxTree[node]=val;
     int mid=(L+R)/2;
-    if(l<=mid) maxTree[p]=max(maxTree[p*2+2],updateMax(L,mid,l,p*2+1,val));
-    else maxTree[p]=max(maxTree[p*2+1],updateMax(mid+1,R,l,p*2+2,val));
-    return maxTree[p];
+    if(l<=mid) maxTree[node]=max(maxTree[node*2+2],updateMax(L,mid,l,node*2+1,val));
+    else maxTree[node]=max(maxTree[node*2+1],updateMax(mid+1,R,l,node*2+2,val));
+    return maxTree[node];
 }
 
-int RMQMax(int L,int R,int l,int r,int i) {
-    if(l<=L && r>=R) return maxTree[i];
+int RMQMax(int L,int R,int l,int r,int node) {
+    if(l<=L && r>=R) return maxTree[node];
     if(R<l || L>r) return -oo;
     int mid=(L+R)/2;
-    return max(RMQMax(L,mid,l,r,2*i+1),RMQMax(mid+1,R,l,r,2*i+2));
+    return max(RMQMax(L,mid,l,r,2*node+1),RMQMax(mid+1,R,l,r,2*node+2));
 }
 
-int buildMax(int values[],int L,int R,int i) {
-    if(L==R) return maxTree[i]=values[L];
+int buildMax(int values[],int L,int R,int node) {
+    if(L==R) return maxTree[node]=values[L];
     int mid=(L+R)/2;
-    maxTree[i]=max(buildMax(values,L,mid,2*i+1),buildMax(values,mid+1,R,2*i+2));
-    return maxTree[i];
+    maxTree[node]=max(buildMax(values,L,mid,2*node+1),buildMax(values,mid+1,R,2*node+2));
+    return maxTree[node];
 }
 
 /* Range Minimum Query Segment Tree */
