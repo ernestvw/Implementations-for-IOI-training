@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAX_NB_NOEUDS = 2e5;
+const int MAX_NB_NOEUDS = 3e5;
 
 struct Arc {
     int u, v;
@@ -68,36 +68,29 @@ void trouverComposantes(int iNoeud, bool dansComposante, int premierNoeud) {
 
 int lca(int iNoeud1, int iNoeud2) {
     int n1 = iNoeud1, n2 = iNoeud2;
-    int entree1 = -1, entree2 = -1;
     while(iNoeud1 != iNoeud2) {
-        n1 = iNoeud1;
-        n2 = iNoeud2;
-        // cout << n1 << " " << n2 << endl;
-        if(profondeur[iNoeud1] >= profondeur[iNoeud2]) {
-            if(composante[iNoeud1] != -1) {
-                entree1 = iNoeud1;
-                iNoeud1 = composante[iNoeud1];
-            }
-            else {
-                entree1 = -1;
+        if(profondeur[iNoeud1] > profondeur[iNoeud2]) {
+            n1 = iNoeud1;
+            if(composante[iNoeud1] == -1) {
                 iNoeud1 = parent[iNoeud1];
+                n1 = iNoeud1;
             }
+            else
+                iNoeud1 = composante[iNoeud1];
         }
         else {
-            if(composante[iNoeud2] != -1) {
-                entree2 = iNoeud2;
-                iNoeud2 = composante[iNoeud2];
-            }
-            else {
-                entree2 = -1;
+            n2 = iNoeud2;
+            if(composante[iNoeud2] == -1) {
                 iNoeud2 = parent[iNoeud2];
+                n2 = iNoeud2;
             }
+            else
+                iNoeud2 = composante[iNoeud2];
         }
     }
-    // cout << n1 << " " << n2 << endl;
-    if(entree1 != -1 && entree2 != -1)
-        return max(entree1, entree2);
-    return iNoeud1;
+    if(profondeur[n1] >= profondeur[n2])
+        return n2;
+    return n1;
 }
 
 int main()
@@ -133,44 +126,3 @@ int main()
 
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
