@@ -1,4 +1,5 @@
 //from http://e-maxx.ru/algo/treap
+//Translation: http://e-maxx-eng.appspot.com/data_structures/treap.html
 struct item {
 	int key, prior;
 	item * l, * r;
