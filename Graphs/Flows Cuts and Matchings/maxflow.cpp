@@ -5,7 +5,7 @@ using namespace std;
 #define INF (int)1e9
 
 struct Edge {
-    int v,c,i,sens;
+    int v,c,i,dir;
 };
 
 int V,E,s,t;
@@ -13,7 +13,7 @@ vector<Edge> adj[MAXV];
 int flow[MAXE];
 bool seen[MAXV];
 
-int augmenter(int u, int Flow) {
+int grow(int u, int Flow) {
     if(u==t)
         return Flow;
     
@@ -23,11 +23,11 @@ int augmenter(int u, int Flow) {
         for(int i=0;i<(int)adj[u].size();i++)
         {
             Edge a=adj[u][i];
-            int newFlow=min(Flow, a.c-a.sens*flow[a.i]);
-            newFlow=augmenter(a.v,newFlow);
+            int newFlow=min(Flow, a.c-a.dir*flow[a.i]);
+            newFlow=grow(a.v,newFlow);
             if(newFlow>0)
             {
-                flow[a.i]+=a.sens*newFlow;
+                flow[a.i]+=a.dir*newFlow;
                 return newFlow;
             }
         }
@@ -43,7 +43,7 @@ int MAXFLOW() {
         for(int u=1;u<=V;u++)
             seen[u]=false;
     
-        int Flow=augmenter(s,INF);
+        int Flow=grow(s,INF);
         maxflow+=Flow;
         if(Flow==0)
             maximal=true;
