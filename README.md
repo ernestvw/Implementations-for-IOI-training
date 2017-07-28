@@ -5,5 +5,6 @@ This repository contains implementations of most of the algorithms and data stru
 Collaborators:
 - Ernest van Wijland
 - Robert Koprinkov
+- Arend Mellendijk
 
 We will try to make our implementations as simple, clear, efficient and reusable as possible.
