@@ -8,3 +8,7 @@ Collaborators:
 - Arend Mellendijk
 
 We will try to make our implementations as simple, clear, efficient and reusable as possible.
+
+
+E 29/08/2017:
+Additional resource possibly worth considering: https://github.com/radoslav11/Coding-Library?files=1 (http://codeforces.com/blog/entry/54103)
