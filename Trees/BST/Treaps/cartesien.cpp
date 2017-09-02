@@ -14,7 +14,7 @@ pNoeud racine;
 
 int card(pNoeud u) { return u ? u->k : 0; }
 
-pNoeud *fusionner(pNoeud u, pNoeud v) {
+pNoeud fusionner(pNoeud u, pNoeud v) {
 	if(!u) return v;
 	else if(!v) return u;
 	else if(u->y < v->y) {
