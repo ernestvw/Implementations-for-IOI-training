@@ -59,16 +59,3 @@
  	else if(q < card(u->gauche)) return i(u->gauche, q);
  	else return i(u->droite, q - card(u->gauche) - 1);
  }
- 
- int main()
- {
- 	srand(42);
- 	racine = NULL;
- 	scanf("%d", &nbCanards);
- 	for(int iCanard = 0; iCanard < nbCanards; iCanard++) {
- 		int x, q;
- 		scanf("%s%d%d", nom[iCanard], &x, &rang);
- 		inserer(&racine, x, iCanard);
- 		printf("%s\n", nom[i(racine, q - 1)]);
- 	}
- }
