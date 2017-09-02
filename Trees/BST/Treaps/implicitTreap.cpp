@@ -96,25 +96,7 @@ int main()
         cin >> nom[i];
         insert(&root, i+1, i);
     }
-    // output(root);
-    cout << endl;
     
-    for(int i = 0; i < nbRequetes; i++) {
-        char tp[2];
-        cin >> tp;
-        if(tp[0] == 'R') {
-            int l, r;
-            cin >> l >> r;
-            l--, r--, r--;
-            reverse(root, l, r);
-            // output(root);
-        }
-        else {
-            int q; cin >> q;
-            q--;
-            cout << nom[find(root, q)] << '\n';
-        }
-    }
     return 0;
 }
 
