@@ -60,35 +60,3 @@ void trouverEnveloppeConvexe() {
     }
     tailleEnveloppe = (int)enveloppe.size();
 }
-
-double calcPerimetre() {
-    double perimetre = 0.0;
-    for(int i = 0; i < tailleEnveloppe; i++) {
-        Point p = enveloppe[i];
-        Point q = enveloppe[(i+1)%tailleEnveloppe];
-        Int cote = dist(p, q);
-        perimetre += sqrt(cote);
-    }
-    return perimetre;
-}
-
-int main()
-{
-    scanf("%d", &nbPoints);
-    for(int i = 0; i < nbPoints; i++)
-        scanf("%d%d", &points[i].x, &points[i].y);
-
-    if(nbPoints == 1) {
-        printf("0");
-        return 0;
-    }
-
-    if(nbPoints == 2) {
-        printf("%.0lf", 2 * sqrt(dist(points[0], points[1])));
-        return 0;
-    }
-
-    trouverEnveloppeConvexe();
-
-    printf("%.0lf", calcPerimetre());
-}
