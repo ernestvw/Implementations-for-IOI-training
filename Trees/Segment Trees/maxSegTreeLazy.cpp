@@ -63,36 +63,3 @@ int trouverMax(Seg intervalle, Seg requete, int noeud) {
         trouverMax(intervalle.moitieDroite(), requete, 2*noeud+2));
     }
 }
-
-int main()
-{
-    Noeud basique;
-    fill_n(arbre, MAX_COL, basique);
-
-    Seg racine(0, nbCols);
-
-    scanf("%d", &nbCoups);
-    for(int iCoup = 0; iCoup < nbCoups; iCoup++) {
-        char buf[2];
-        scanf("%s", buf);
-        char sens = buf[0];
-        int l, c;
-        scanf("%d%d", &l, &c);
-        if(sens == 'H') {
-            Seg modif(c, c + l - 1);
-            int nouvH = trouverMax(racine, modif, 0);
-            modifier(racine, modif, nouvH+1, 0);
-        }
-        else if(sens == 'V') {
-            Seg modif(c, c);
-            int nouvH = trouverMax(racine, modif, 0);
-            modifier(racine, modif, nouvH + l, 0);
-        }
-        else {
-            printf("ERREUR");
-            return 0;
-        }
-    }
-
-    printf("%d", trouverMax(racine, racine, 0));
-}
