@@ -30,7 +30,7 @@ int augmenter(int u, int dFlot) {
     }
     return 0;
 }
-
+ 
 int trouverFlot() {
     int maxFlot = 0;
     bool maximal = false;
